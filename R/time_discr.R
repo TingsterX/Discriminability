@@ -51,5 +51,5 @@ time_discr <- function(signal, ids, rank=FALSE) {
     geom_ribbon(data=meltkde, aes(x=distance, ymax=Probability, fill=Relationship), ymin=0, alpha=0.5) +
     ggtitle('Density Estimate of Scan Distances')
   dual_plot <- multiplot(distance_plot, kde_plot, layout=matrix(c(1,2), nrow=1, byrow=TRUE))
-  return(list(discr = discrstat, dist = D, distplot = distance_plot, kdeplot = kde_plot, combinedplot = dual_plot))
+  return(list(d = discrstat, dist = D, distplot = distance_plot, kdeplot = kde_plot, combinedplot = dual_plot))
 }
