@@ -13,6 +13,9 @@
 #' @author Eric Bridgeford
 #' @export
 time_discr <- function(signal, ids, rank=FALSE) {
+  require(reshape2)
+  require(Rmisc)
+  require(ggplot2)
   corr <- obs2corr(signal)
 
   ## Change Convention from preferred vara[[sub]][array] to vara[sub,array] for use with old code ---------
@@ -30,7 +33,7 @@ time_discr <- function(signal, ids, rank=FALSE) {
     wgraphs <- rank_matrices(wgraphs)
   }
 
-  D <- log(distance(wgraphs))
+  D <- distance(wgraphs)
   discrstat <- discr(rdf(D, ids))
 
   kdeobj <- kde_subject(D, ids)
@@ -42,7 +45,7 @@ time_discr <- function(signal, ids, rank=FALSE) {
   distance_plot <- ggplot(melt(D), aes(x=Var1, y=Var2, fill=value)) +
     geom_tile() +
     scale_fill_gradientn(colours=c("darkblue","blue","purple","green","yellow"),
-                         name="log dist") +
+                         name="dist") +
     xlab("Scan") + ylab("Scan") + ggtitle(sprintf('Distance Matrix between Pairs of Scans, d=%.4f', discrstat))
   kde_plot <- ggplot() +
     geom_ribbon(data=meltkde, aes(x=distance, ymax=Probability, fill=Relationship), ymin=0, alpha=0.5) +

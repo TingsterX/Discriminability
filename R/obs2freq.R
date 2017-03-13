@@ -11,7 +11,7 @@
 obs2amp <- function(observations, tr=NaN, lc=0.01, normalize=TRUE) {
   amp_data <- sapply(observations,  function(x) {
     amp_sig <- highpass_fft(x, tr=tr, lc=lc)
-    amp_sig <- 2*amp_sig
+    amp_sig <- 2*abs(amp_sig)
     # normalized
     if (normalize) {
       amp_sig <- amp_sig %*% diag(1/apply(X=amp_sig, MARGIN=2, FUN=sum))

@@ -16,8 +16,11 @@
 #' @author Eric Bridgeford
 #' @export
 freq_discr <- function(signal, ids, tr, lc, spec='amp', rank=FALSE) {
+  require(reshape2)
+  require(Rmisc)
+  require(ggplot2)
   if (spec == 'amp') {
-    spec_sig <- obs2pow(signal, tr = tr, lc=lc)
+    spec_sig <- obs2amp(signal, tr = tr, lc=lc)
   } else if (spec == 'pow') {
     spec_sig <- obs2pow(signal, tr = tr, lc=lc)
   }
