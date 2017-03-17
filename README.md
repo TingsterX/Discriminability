@@ -4,8 +4,11 @@ A repository containing a Discrminability analysis package.
 ## Installation Instructions:
 
 ### Recommended Way (Install from Github)
+    # note if you do not have devtools installed, you must first run:
+    # install.packages('devtools')
     # from within R
-    install.github('ebridge2/Discriminability')
+    require(devtools)
+    install_github('ebridge2/Discriminability')
     library('Discriminability') # loads the package
 
 ### Not Recommended Way (Cloning Git Repo)
