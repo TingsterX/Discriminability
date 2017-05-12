@@ -5,10 +5,10 @@
 \title{Timeseries plot}
 \usage{
 plot_timeseries(ts, title = "", xlabel = "TRs", ylabel = "intensity",
-  legend = "ROIs")
+  legend = "ROI", fsize = 12)
 }
 \arguments{
-\item{signal}{[[n]][nt, nroi]: the signal for each of the n subjects, containing an array of nt observations for nroi rois.}
+\item{ts}{[nt,nroi]: the signal, containing an array of nt observations for nroi rois.}
 
 \item{title="":}{the title for the timeseries plot.}
 
@@ -17,6 +17,8 @@ plot_timeseries(ts, title = "", xlabel = "TRs", ylabel = "intensity",
 \item{ylabel="intensity":}{the y label for the timeseries plot.}
 
 \item{legend="ROIs":}{the legend title for the timeseries plot.}
+
+\item{fsize=10:}{the default font size for the plot text.}
 }
 \value{
 tsplot : a plot of the timeseries.

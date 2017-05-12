@@ -4,7 +4,7 @@
 \alias{freq_discr}
 \title{Frequency Discriminability}
 \usage{
-freq_discr(signal, ids, tr, lc, spec = "amp", rank = FALSE)
+freq_discr(signal, ids, tr, lc, spec = "amp", rank = FALSE, fsize = 15)
 }
 \arguments{
 \item{signal}{[[n]][nt, nroi]: the signal for each of the n subjects, containing an array of nt observations for nroi rois.}
@@ -18,6 +18,8 @@ freq_discr(signal, ids, tr, lc, spec = "amp", rank = FALSE)
 \item{spec='amp'}{: the spectrum to work with. 'amp' for amplitude, 'pow' for power.}
 
 \item{rank=FALSE}{: a boolean indicating whether to do unranked (FALSE) or ranked (TRUE).}
+
+\item{fsize=10:}{the default font size for the plot text.}
 }
 \value{
 d [1]: the discriminability statistic for the data.

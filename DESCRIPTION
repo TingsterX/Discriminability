@@ -13,4 +13,6 @@ Imports:
   stats,
   ggplot2,
   Rmisc,
-  reshape2
+  reshape2,
+  igraph,
+  gtools

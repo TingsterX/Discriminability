@@ -4,14 +4,18 @@
 \alias{time_discr}
 \title{Time Domain Discriminability}
 \usage{
-time_discr(signal, ids, rank = FALSE)
+time_discr(signal, ids, rank = FALSE, graphs = FALSE, fsize = 15)
 }
 \arguments{
-\item{signal}{[[n]][nt, nroi]: the signal for each of the n subjects, containing an array of nt observations for nroi rois.}
+\item{signal}{[[n]][nt, nroi]: the signal for each of the n subjects, containing an array of nt observations,  for nroi rois. Alternatively, can be the graphs for each of the subjects.}
 
 \item{ids}{[n]: the ids for each scan corresponding to the signal from above.}
 
 \item{rank=FALSE}{: a boolean indicating whether to do unranked (FALSE) or ranked (TRUE).}
+
+\item{graphs=FALSE:}{a boolean indicating whether the inputs are already graphs or not.}
+
+\item{fsize=15:}{the default font size.}
 }
 \value{
 d [1]: the discriminability statistic for the data.

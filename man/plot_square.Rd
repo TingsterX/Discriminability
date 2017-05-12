@@ -4,11 +4,11 @@
 \alias{plot_square}
 \title{Square plot}
 \usage{
-plot_square(mtx, title = "", xlabel = "TRs", ylabel = "intensity",
-  legend = "ROIs")
+plot_square(mtx, title = "", xlabel = "ROI", ylabel = "ROI",
+  legend = "metric", itype = "sq", fsize = 12)
 }
 \arguments{
-\item{signal}{[[n]][nt, nroi]: the signal for each of the n subjects, containing an array of nt observations for nroi rois.}
+\item{in}{[nroi, nroi] or [nt, nroi]: the input. Can either be a square matrix of featuresxfeatures, or an array of observationsxfeatures (see itype parameter).}
 
 \item{title="":}{the title for the square plot.}
 
@@ -17,6 +17,10 @@ plot_square(mtx, title = "", xlabel = "TRs", ylabel = "intensity",
 \item{ylabel="ROIs":}{the y label for the square plot.}
 
 \item{legend="":}{the legend title for the square plot.}
+
+\item{itype="sq":}{the shape of the input. If "sq", the plot will be generated as is for the input signal. If "ts", we will assume the input is observationsxfeatures, and will correlate the features first.}
+
+\item{fsize=10:}{the default font size for the plot text.}
 }
 \value{
 sqplot : a plot of the square.

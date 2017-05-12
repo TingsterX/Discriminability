@@ -8,6 +8,7 @@
 #' @param lc=0.01 [1]: the lower cutoff for highpass filtering. NULL for none.
 #' @param spec='amp' : the spectrum to work with. 'amp' for amplitude, 'pow' for power.
 #' @param rank=FALSE : a boolean indicating whether to do unranked (FALSE) or ranked (TRUE).
+#' @param fsize=10: the default font size for the plot text.
 #' @return d [1]: the discriminability statistic for the data.
 #' @return dist [n, n]: the distance matrix associated with the data.
 #' @return distplot : a plot of the distance matrix.
@@ -15,7 +16,7 @@
 #' @return combinedplot : a multiplot showing the dist plot and the kde plot.
 #' @author Eric Bridgeford
 #' @export
-freq_discr <- function(signal, ids, tr, lc, spec='amp', rank=FALSE) {
+freq_discr <- function(signal, ids, tr, lc, spec='amp', rank=FALSE, fsize=15) {
   require(reshape2)
   require(Rmisc)
   require(ggplot2)
@@ -42,10 +43,12 @@ freq_discr <- function(signal, ids, tr, lc, spec='amp', rank=FALSE) {
     scale_fill_gradientn(colours=c("darkblue","blue","purple","green","yellow"),name="distance") +
     xlab("Scan") +
     ylab("Scan") +
-    ggtitle(sprintf('Distance Matrix between Pairs of Scans, d=%.4f', discrspec))
+    ggtitle(sprintf('Distance Matrix between Pairs of Scans, d=%.4f', discrspec)) +
+    theme(text=element_text(size=fsize))
   kde_plot <- ggplot() +
     geom_ribbon(data=meltkde, aes(x=distance, ymax=Probability, fill=Relationship), ymin=0, alpha=0.5) +
-    ggtitle('Density Estimate of Scan Distances')
+    ggtitle('Density Estimate of Scan Distances') +
+    theme(text=element_text(size=fsize))
   dual_plot <- multiplot(distance_plot, kde_plot, layout=matrix(c(1,2), nrow=1, byrow=TRUE))
   return(list(d=discrspec, dist=D, distplot=distance_plot, kdeplot = kde_plot, combinedplot=dual_plot))
 }
