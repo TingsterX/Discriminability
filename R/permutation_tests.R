@@ -41,7 +41,7 @@ one_sample_test <- function(D, labels, nperm=100, verbose=FALSE) {
 #' @param D2[nxn]: the second distance matrix to run a permutation test for. An [nxn] matrix.
 #' @param labels[n]: the labels organized appropriately with the distance matrices. Label 1 should correspond to the first column, 2 the second, and so on.
 #' @param verbose=FALSE: whether to print the itereation numbers.
-#' @param nrep=100: the number of permutations to perform.
+#' @param nperm=100: the number of permutations to perform.
 #' @return pval: the pvalue associated with the permutation test.
 #' @author Shangsi Wang
 #' @export
@@ -49,18 +49,30 @@ two_sample_test <- function(dist1, dist2, ids, nperm=100, verbose=FALSE){
   # test two discriminability are the same
   N1 <- dim(dist1)[1]
   N2 <- dim(dist2)[1]
+
+
   if (is.null(N1) || is.null(N2) ) {
     stop('Invalid datatype for dist1 or dist2')
   }
   if (N1 != N2) {
     stop('The dimension of dist1 and dist2 do not match')
   }
+
   disct1 <- matrix(0,N1,2)
   disct2 <- matrix(0,N1,2)
 
   for (i in 1:N1){
     disct1[i,] <- dis_vec(dist1[i,],i,ids)
     disct2[i,] <- dis_vec(dist2[i,],i,ids)
+  }
+
+  disct1 <- disct1[!is.na(disct1[,1]),]
+  disct2 <- disct2[!is.na(disct2[,1]),]
+  N1 <- dim(disct1)[1]
+  N2 <- dim(disct2)[1]
+
+  if (N1 != N2) {
+    stop('The dimension of dist1 and dist2 do not match')
   }
 
   tcount <- sum(disct1[,2])

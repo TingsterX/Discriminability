@@ -15,7 +15,7 @@ two_sample_test(dist1, dist2, ids, nperm = 100, verbose = FALSE)
 
 \item{verbose=FALSE:}{whether to print the itereation numbers.}
 
-\item{nrep=100:}{the number of permutations to perform.}
+\item{nperm=100:}{the number of permutations to perform.}
 }
 \value{
 pval: the pvalue associated with the permutation test.
