@@ -5,7 +5,7 @@
 #' @param dist [n, n]: a distance matrix for n subjects.
 #' @param ids [n]: a vector containing the subject ids for each subject.
 #' @return rdf [n]: the reliability per subject.
-#' @author Eric Bridgeford and Gregory Kiar
+#' @author Shangsi Wang, Eric Bridgeford and Gregory Kiar
 #' @export
 rdf <- function(dist, ids) {
   N <- dim(dist)[1]
