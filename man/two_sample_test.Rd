@@ -4,7 +4,7 @@
 \alias{two_sample_test}
 \title{Discriminability Two Sample Permutation Test}
 \usage{
-two_sample_test(dist1, dist2, ids, nrep = 100, verbose = FALSE)
+two_sample_test(dist1, dist2, ids, nperm = 100, verbose = FALSE)
 }
 \arguments{
 \item{D1[nxn]:}{the first distance matrix to run a permutation test for. An [nxn] matrix.}

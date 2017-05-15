@@ -19,8 +19,8 @@ one_sample_test <- function(D, labels, nperm=100, verbose=FALSE) {
   }
   tr <- mean(rdf(D, ids))
 
-  nr <- rep(0,nrep)
-  for (i in 1:nrep){
+  nr <- rep(0,nperm)
+  for (i in 1:nperm){
     if (verbose) {
       print(i)
     }
@@ -29,7 +29,7 @@ one_sample_test <- function(D, labels, nperm=100, verbose=FALSE) {
   result <- list()
   result$srel <- tr
   result$null <- sort(nr)
-  result$pval <- sum(nr>tr)/nrep
+  result$pval <- sum(nr>tr)/nperm
   return(result)
 }
 
@@ -45,7 +45,7 @@ one_sample_test <- function(D, labels, nperm=100, verbose=FALSE) {
 #' @return pval: the pvalue associated with the permutation test.
 #' @author Shangsi Wang
 #' @export
-two_sample_test <- function(dist1, dist2, ids, nrep=100, verbose=FALSE){
+two_sample_test <- function(dist1, dist2, ids, nperm=100, verbose=FALSE){
   # test two discriminability are the same
   N1 <- dim(dist1)[1]
   N2 <- dim(dist2)[1]
@@ -68,10 +68,10 @@ two_sample_test <- function(dist1, dist2, ids, nrep=100, verbose=FALSE){
   ##print(sum(disct1[,1] * disct1[,2])/tcount)
   ##print(sum(disct2[,1] * disct2[,2])/tcount)
 
-  ndif <- rep(0,nrep)
+  ndif <- rep(0,nperm)
   ndisct1 <- matrix(0,N1,2)
   ndisct2 <- matrix(0,N1,2)
-  for (i in 1:nrep){
+  for (i in 1:nperm){
     if (verbose) {
       print(i)
     }
@@ -84,7 +84,7 @@ two_sample_test <- function(dist1, dist2, ids, nrep=100, verbose=FALSE){
     }
     ndif[i] <- (sum(ndisct1[,1] * ndisct1[,2]) - sum(ndisct2[,1] * ndisct2[,2])) / tcount
   }
-  pvalue <- (sum(ndif > abs(tdif)) + 0.5 * sum(ndif == abs(tdif))) / nrep
+  pvalue <- (sum(ndif > abs(tdif)) + 0.5 * sum(ndif == abs(tdif))) / nperm
   return (list(pval=pvalue))
 
 }
