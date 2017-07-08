@@ -23,8 +23,8 @@ kde_subject <- function(D, id) {
       }
     }
   }
-  intert <- density(inter) # temporary computation so that we can see what range is optimal
-  intrat <- density(intra)
+  intert <- density(as.numeric(inter)) # temporary computation so that we can see what range is optimal
+  intrat <- density(as.numeric(intra))
   bw_selection <- mean(c(intert$bw, intrat$bw))
   minx <- min(c(intrat$x, intert$x)) #compute min
   maxx <- max(c(intrat$x, intert$x)) #and max vals
