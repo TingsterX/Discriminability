@@ -30,7 +30,7 @@ freq_discr <- function(signal, ids, tr, lc, spec='amp', rank=FALSE, fsize=15) {
     div <- sapply(div, function(x) array(rank(x), dim=dim(x)), USE.NAMES=TRUE, simplify=FALSE)
   }
   D <- div2dist(div)
-  discrspec <- discr(rdf(D, ids))
+  discrspec <- discr(rdf(D, ids), thresh=0.01)
 
   kdeobj <- kde_subject(D, ids)
   kde_dist <- data.frame(x=kdeobj[[1]]$y, y=kdeobj[[2]]$y, distance=kdeobj[[1]]$x)

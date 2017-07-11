@@ -40,7 +40,7 @@ time_discr <- function(signal, ids, rank=FALSE, graphs=FALSE, fsize=15) {
   }
 
   D <- distance(wgraphs)
-  discrstat <- discr(rdf(D, ids))
+  discrstat <- discr(rdf(D, ids), thresh=.01)
 
   kdeobj <- kde_subject(D, ids)
   kde_dist <- data.frame(x=kdeobj[[1]]$y, y=kdeobj[[2]]$y, distance=kdeobj[[1]]$x)
