@@ -15,4 +15,5 @@ Imports:
   Rmisc,
   reshape2,
   igraph,
+  fmriutils,
   gtools
