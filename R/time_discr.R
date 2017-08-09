@@ -15,11 +15,8 @@
 #' @author Eric Bridgeford
 #' @export
 time_discr <- function(signal, ids, rank=FALSE, graphs=FALSE, fsize=15) {
-  require(reshape2)
-  require(Rmisc)
-  require(ggplot2)
   if (!graphs) {
-    corr <- obs2corr(signal)
+    corr <- fmriu.time.obs2corr(signal)
   } else {
     corr <- signal
   }
