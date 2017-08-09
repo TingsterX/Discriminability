@@ -17,13 +17,10 @@
 #' @author Eric Bridgeford
 #' @export
 freq_discr <- function(signal, ids, tr, lc, spec='amp', rank=FALSE, fsize=15) {
-  require(reshape2)
-  require(Rmisc)
-  require(ggplot2)
   if (spec == 'amp') {
-    spec_sig <- obs2amp(signal, tr = tr, lc=lc)
+    spec_sig <- fmriu.freq.obs2freq(signal, tr = tr, lc=lc, spectrum=spec)
   } else if (spec == 'pow') {
-    spec_sig <- obs2pow(signal, tr = tr, lc=lc)
+    spec_sig <- fmriu.freq.obs2freq(signal, tr = tr, lc=lc, spectrum=spec)
   }
   div <- freq2div(spec_sig)
   if (rank==TRUE) {
