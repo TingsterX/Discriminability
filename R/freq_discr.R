@@ -18,13 +18,12 @@
 #' @export
 freq_discr <- function(signal, ids, tr, lc, spec='amp', rank=FALSE, fsize=15) {
   if (spec == 'amp') {
-    spec_sig <- fmriu.freq.obs2freq(signal, tr = tr, lc=lc, spectrum=spec)
+    spec_sig <- fmriu.freq.obs2div(signal, tr = tr, lc=lc, spectrum=spec)
   } else if (spec == 'pow') {
-    spec_sig <- fmriu.freq.obs2freq(signal, tr = tr, lc=lc, spectrum=spec)
+    spec_sig <- fmriu.freq.obs2div(signal, tr = tr, lc=lc, spectrum=spec)
   }
-  div <- freq2div(spec_sig)
   if (rank==TRUE) {
-    div <- sapply(div, function(x) array(rank(x), dim=dim(x)), USE.NAMES=TRUE, simplify=FALSE)
+    div <- sapply(spec_sig, function(x) array(rank(x), dim=dim(x)), USE.NAMES=TRUE, simplify=FALSE)
   }
   D <- div2dist(div)
   discrspec <- discr(rdf(D, ids), thresh=0.01)
