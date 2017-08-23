@@ -1,4 +1,4 @@
-library(Discriminability)
+library(discriminability)
 context('Tests for discriminability code')
 require(fmriutils)
 
@@ -15,7 +15,13 @@ graphs[,,2] <- g2
 graphs[,,3] <- g1
 graphs[,,4] <- g2
 graphs <- fmriu.array2list(graphs)
-test_that("Discriminability in perfect match case works effectively", {
+test_that("Discriminability in perfect match case gets score of 1", {
   labels <- c(0, 1, 0, 1)
-  discr.discr(discr.rdf(graphs, labels))
+  expect_equal(discr.discr(discr.rdf(discr.distance(graphs), labels)), 1)
 })
+
+test_that("Discriminability in no match case gets score of 1/(nscan*n)", {
+  labels <- c(1, 1, 0, 0)
+  expect_equal(discr.discr(discr.rdf(discr.distance(graphs), labels)), .25)
+})
+
