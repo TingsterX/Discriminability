@@ -11,20 +11,20 @@
 #' @return pval: the pvalue associated with the permutation test.
 #' @author Shangsi Wang
 #' @export
-one_sample_test <- function(D, labels, nperm=100, verbose=FALSE) {
+discr.tests.one_sample_test <- function(D, labels, nperm=100, verbose=FALSE) {
   # test whether discriminability differs from 0.5
   N <- dim(D)[1]
   if (is.null((N))) {
     stop('Invalid datatype for N')
   }
-  tr <- mean(rdf(D, ids))
+  tr <- mean(discr.rdf(D, ids))
 
   nr <- rep(0,nperm)
   for (i in 1:nperm){
     if (verbose) {
       print(i)
     }
-    nr[i] <- mean(rdf(D, ids[sample(N)]))
+    nr[i] <- mean(discr.rdf(D, ids[sample(N)]))
   }
   result <- list()
   result$srel <- tr
@@ -45,11 +45,10 @@ one_sample_test <- function(D, labels, nperm=100, verbose=FALSE) {
 #' @return pval: the pvalue associated with the permutation test.
 #' @author Shangsi Wang
 #' @export
-two_sample_test <- function(dist1, dist2, ids, nperm=100, verbose=FALSE){
+discr.tests.two_sample_test <- function(dist1, dist2, ids, nperm=100, verbose=FALSE){
   # test two discriminability are the same
   N1 <- dim(dist1)[1]
   N2 <- dim(dist2)[1]
-
 
   if (is.null(N1) || is.null(N2) ) {
     stop('Invalid datatype for dist1 or dist2')
@@ -77,8 +76,6 @@ two_sample_test <- function(dist1, dist2, ids, nperm=100, verbose=FALSE){
 
   tcount <- sum(disct1[,2])
   tdif <- (sum(disct1[,1] * disct1[,2]) - sum(disct2[,1] * disct2[,2])) / tcount
-  ##print(sum(disct1[,1] * disct1[,2])/tcount)
-  ##print(sum(disct2[,1] * disct2[,2])/tcount)
 
   ndif <- rep(0,nperm)
   ndisct1 <- matrix(0,N1,2)
@@ -101,7 +98,7 @@ two_sample_test <- function(dist1, dist2, ids, nperm=100, verbose=FALSE){
 
 }
 
-dis_vec<-function(distvec,i,ids){
+discr.tests.dis_vec<-function(distvec,i,ids){
   N <- length(distvec)
   ind <- which(grepl(ids[i],ids))
   rdf <- c()
@@ -118,7 +115,7 @@ dis_vec<-function(distvec,i,ids){
   return(c(mean(rdf),count))
 }
 
-reliability_bootstrap<-function(ids1,obs1,nrep=100){
+discr.tests.reliability_bootstrap<-function(ids1,obs1,nrep=100){
   # test two discriminability are the same
   N <- length(ids1)
   if (is.null(N) ) {
@@ -187,7 +184,7 @@ reliability_bootstrap<-function(ids1,obs1,nrep=100){
     }
 
 
-    rels[i] <- mean(rdf(distmat1,bids1))
+    rels[i] <- mean(discr.rdf(distmat1,bids1))
   }
   return(rels)
 }

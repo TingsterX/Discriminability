@@ -9,7 +9,7 @@
 #' @return H [1]: the hellinger distance between the intra and inter subject relationships.
 #' @author Eric Bridgeford
 #' @export
-kde_subject <- function(D, id) {
+discr.kde_subject <- function(D, id) {
   print("computing hellinger distances and densities...")
   intra <- vector() # array for intra
   inter <- vector() # array for inter

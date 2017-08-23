@@ -7,7 +7,7 @@
 #' @return rdf [n]: the reliability per subject.
 #' @author Shangsi Wang, Eric Bridgeford and Gregory Kiar
 #' @export
-rdf <- function(dist, ids) {
+discr.rdf <- function(dist, ids) {
   N <- dim(dist)[1]
   if (is.null((N))) {
     stop('Invalid datatype for N')
@@ -50,7 +50,7 @@ rdf <- function(dist, ids) {
 #' @return discr [1]: the discriminability statistic.
 #' @author Eric Bridgeford and Gregory Kiar
 #' @export
-discr <- function(rdf, remove_outliers=TRUE, thresh=0, output=FALSE) {
+discr.discr <- function(rdf, remove_outliers=TRUE, thresh=0, output=FALSE) {
   if (remove_outliers) {
     discr <- mean(rdf[which(rdf[!is.nan(rdf)] > thresh)]) # mean of the rdf
     ol <- length(which(rdf<thresh))

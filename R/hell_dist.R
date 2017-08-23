@@ -8,6 +8,6 @@
 #' @param b the second matrix
 #' @return h the hellinger distance
 #' @export
-hell_dist <- function(a, b) {
+discr.hell_dist <- function(a, b) {
   return(1/sqrt(2)*norm(sqrt(a) - sqrt(b), "f"))
 }
