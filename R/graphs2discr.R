@@ -1,6 +1,6 @@
-#' Time Domain Discriminability
+#' Graph Discriminability
 #'
-#' A function that performs discriminability in the time domain using the correlation.
+#' A function that performs discriminability on a set of graphs.
 #'
 #' @import fmriutils
 #' @import Rmisc

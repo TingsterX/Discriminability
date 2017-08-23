@@ -8,11 +8,12 @@ A repository containing a Discrminability analysis package.
     # install.packages('devtools')
     # from within R
     require(devtools)
+    install_github('neurodata/fmriutils')
     install_github('ebridge2/Discriminability')
     library('Discriminability') # loads the package
 
 ### Not Recommended Way (Cloning Git Repo)
-    #from within R
+    #from within R after cloning this repo
     install.packages('/path/to/Discriminability', repos=NULL, type='source')
     library('Discriminability') # loads the package
 
