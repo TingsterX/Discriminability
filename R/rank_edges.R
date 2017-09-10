@@ -11,10 +11,10 @@ discr.rank_edges <- function(graphs, normalize=FALSE) {
   rgraphs <- sapply(graphs, function(g) {
     d <- dim(g)  # the dimensions of the graph
     # use the stats ranking function
-    rgraphs <- array(rank(graphs[,,i], ties.method="average"), c(d[1], d[2]))
+    rg <- array(rank(g, ties.method="average"), c(d[1], d[2]))
     if (normalize) {
       # normalize values to fall btwn 0 and 1
-      rg[,,i] <- ( rg[,,i] - min(rg[,,i]) ) / (max(rg[,,i]) - min(rg[,,i]))
+      rg <- ( rg - min(rg) ) / (max(rg) - min(rg))
     }
     return(rg)
   }, simplify=FALSE)

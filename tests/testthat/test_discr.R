@@ -25,3 +25,14 @@ test_that("Discriminability in no match case gets score of 1/(nscan*n)", {
   expect_equal(discr.discr(discr.rdf(discr.distance(graphs), labels)), .25)
 })
 
+test_that("Discriminability via graphs2discr driver works in perfect match case", {
+  labels <- c(0, 1, 0, 1)
+  expect_equal(discr.graphs2discr(graphs, labels, rank=FALSE), 1)
+})
+
+
+
+test_that("Discriminability via graphs2discr driver works in no match case gets score of 1/(nscan*n)", {
+  labels <- c(0, 0, 1, 1)
+  expect_equal(discr.graphs2discr(graphs, labels, rank=FALSE), .25)
+})
